@@ -24,7 +24,9 @@ clock = pygame.time.Clock()
 
 menu_font = pygame.font.Font("font/5.ttf", 120)
 status_font = pygame.font.Font("font/5.ttf", 60)
-edu_font = pygame.font.Font("font/5.ttf", 80)
+calc_font = pygame.font.Font("font/5.ttf", 80)
+edu_font1 = pygame.font.Font("font/5.ttf", 80)
+edu_font2 = pygame.font.Font("font/5.ttf", 60)
 
 # menu_font = pygame.font.Font("font/3.ttf", 150)
 # status_font = pygame.font.Font("font/3.ttf", 60)
@@ -73,7 +75,7 @@ while True:
                     if event.key == pygame.K_ESCAPE:
                         game_pause = True
 
-            if random.randint(0, 1) == 1:
+            if random.randint(0, 10) > 1:
                 text_task_active = level.run()
             else:
                 calc_active = level.run()
@@ -91,7 +93,7 @@ while True:
 
         elif calc_active:
             if not calc_created:
-                calc = Calc(screen, edu_font, active_background)
+                calc = Calc(screen, calc_font, active_background)
                 calc_created = True
             calc.update()
             if calc.right:
@@ -104,7 +106,7 @@ while True:
                 game_loss = True
         elif text_task_active:
             if not text_task_created:
-                text_task = TextTask(screen, edu_font, active_background)
+                text_task = TextTask(screen, edu_font1, edu_font2, active_background)
                 text_task_created = True
             text_task.update()
             if text_task.right:

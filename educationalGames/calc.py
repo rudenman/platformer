@@ -15,9 +15,9 @@ class Calc:
 
         self.task = "Cколько будет "
 
-        self.number1 = random.randint(0, 500)
+        self.number1 = random.randint(0, 30)
         self.task += str(self.number1)
-        self.number2 = random.randint(0, 500)
+        self.number2 = random.randint(0, 30)
         self.operation = random.randint(0, 2)
         self.result = None
 
