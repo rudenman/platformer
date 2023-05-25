@@ -27,8 +27,8 @@ class Player:
         # Движение персонажа
         self.direction = pygame.math.Vector2(0, 0)
         self.speed = object_speed
-        self.gravity = 0.8
-        self.jump_speed = -22
+        self.gravity = gravity #0.8
+        self.jump_speed = -jump_speed #-22
 
         # Состояние персонажа
         self.on_ground = False

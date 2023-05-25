@@ -9,11 +9,12 @@ import pygame
 from educationalGames.calc import Calc
 from educationalGames.textTask import TextTask
 from background import Background
+import sys
 
 
 def close():
     pygame.quit()
-    exit()
+    sys.exit()
 
 
 pygame.init()
@@ -22,11 +23,11 @@ screen = pygame.display.set_mode((window_width, window_height))
 screen_rect = screen.get_rect()
 clock = pygame.time.Clock()
 
-menu_font = pygame.font.Font("font/5.ttf", 120)
-status_font = pygame.font.Font("font/5.ttf", 60)
-calc_font = pygame.font.Font("font/5.ttf", 80)
-edu_font1 = pygame.font.Font("font/5.ttf", 80)
-edu_font2 = pygame.font.Font("font/5.ttf", 60)
+menu_font = pygame.font.Font("font/5.ttf", menu_font_size)
+status_font = pygame.font.Font("font/5.ttf", status_font_size)
+calc_font = pygame.font.Font("font/5.ttf", calc_font_size)
+edu_font1 = pygame.font.Font("font/5.ttf", edu_font1_size)
+edu_font2 = pygame.font.Font("font/5.ttf", edu_font2_size)
 
 # menu_font = pygame.font.Font("font/3.ttf", 150)
 # status_font = pygame.font.Font("font/3.ttf", 60)
@@ -46,8 +47,8 @@ game_upgrade_level = False
 game_pause = False
 game_loss = False
 
-level = Level(screen)
 level_number = 1
+level = Level(screen, level_number)
 
 status_bar = StatusBar(screen, status_font)
 
@@ -89,6 +90,7 @@ while True:
         elif game_pause:
             if pause_menu.active:
                 close()
+
             game_pause = not pause_menu.update()
 
         elif calc_active:
@@ -119,7 +121,7 @@ while True:
                 game_loss = True
         elif game_upgrade_level:
             if transition_menu.update(level_number):
-                level = Level(screen)
+                level = Level(screen, level_number + 1)
                 level_number += 1
                 game_upgrade_level = False
 
@@ -128,7 +130,7 @@ while True:
                 close()
             game_loss = loss_menu.update_data(level_number)
             if not game_loss:
-                level = Level(screen)
+                level = Level(screen, 1)
                 level_number = 1
 
     elif not game_active:

@@ -1,5 +1,6 @@
 import random
 import pygame
+from sys import exit
 
 from background import Background
 from settings import *

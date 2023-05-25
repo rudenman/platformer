@@ -1,8 +1,6 @@
 import random
 
 import pygame.draw
-
-from settings import *
 from tile import Tile
 from player import Player
 from enemy import *
@@ -13,8 +11,13 @@ from playerTrace import PlayerTrace
 
 
 class Level:
-    def __init__(self, screen):
+    def __init__(self, screen, level_number):
         # init_images()
+
+        if level_number < 5:
+            self.level_number = level_number
+        else:
+            self.level_number = 5
 
         self.reward = None
         self.reward_lighting = None
@@ -39,7 +42,9 @@ class Level:
     def create_level(self):
         delta_x = 0
         level = [map_start]
-        for i in range(3):
+
+        for i in range(self.level_number):
+            random.shuffle(map_parts)
             level.append(map_parts[random.randint(0, len(map_parts) - 1)])
         level.append(map_end)
 
@@ -120,7 +125,7 @@ class Level:
 
     def check_position(self):
         if self.player.rect.bottom >= window_height:
-            self.player.direction.y = -30
+            self.player.direction.y = -jump_speed * 3 / 2
             self.player.get_damage()
 
     def check_enemy_collisions(self):

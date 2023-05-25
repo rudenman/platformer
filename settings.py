@@ -1,14 +1,26 @@
 import pygame.image
+import ctypes
 
-window_width = 1920
-window_height = 1080
+user = ctypes.windll.user32
 
-tile_size = 64
-player_size = 45
-enemy_size = 15
+window_width = user.GetSystemMetrics(0)
+window_height = user.GetSystemMetrics(1)
 
-object_speed = 8
-enemy_speed = 5
+tile_size = window_width / 30
+player_size = tile_size / 8 * 6
+enemy_size = tile_size / 4
+
+menu_font_size = window_height // 10
+status_font_size = window_height // 20
+calc_font_size = window_height // 60 * 4
+edu_font1_size = window_height // 60 * 4
+edu_font2_size = window_height // 20
+
+object_speed = window_width / 235 #8
+enemy_speed = window_width / 380 #5
+
+gravity = window_height / 1350
+jump_speed = window_height / 49
 
 #
 
