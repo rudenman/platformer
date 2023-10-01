@@ -7,7 +7,7 @@ from math import sin
 class Player:
     def __init__(self, pos):
         # цвет
-        #self.color = [21, 213, 213]
+        # self.color = [21, 213, 213]
         self.color = [203, 203, 203]
         self.light_k = 11
 
@@ -18,17 +18,16 @@ class Player:
         self.image_run = pygame.transform.scale(self.image_run, (player_size, player_size))
 
         self.image = self.image_stop
-        #self.image = pygame.surface.Surface((player_size, player_size))
-        #self.image.fill(self.color)
+        # self.image = pygame.surface.Surface((player_size, player_size))
+        # self.image.fill(self.color)
 
         self.rect = self.image.get_rect(topleft=pos)
-
 
         # Движение персонажа
         self.direction = pygame.math.Vector2(0, 0)
         self.speed = object_speed
-        self.gravity = gravity #0.8
-        self.jump_speed = -jump_speed #-22
+        self.gravity = gravity  # 0.8
+        self.jump_speed = -jump_speed  # -22
 
         # Состояние персонажа
         self.on_ground = False

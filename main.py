@@ -6,8 +6,6 @@ from level import Level
 from statusBar import StatusBar
 from menu import Menu
 import pygame
-from educationalGames.calc import Calc
-from educationalGames.textTask import TextTask
 from background import Background
 import sys
 
@@ -25,9 +23,6 @@ clock = pygame.time.Clock()
 
 menu_font = pygame.font.Font("font/5.ttf", menu_font_size)
 status_font = pygame.font.Font("font/5.ttf", status_font_size)
-calc_font = pygame.font.Font("font/5.ttf", calc_font_size)
-edu_font1 = pygame.font.Font("font/5.ttf", edu_font1_size)
-edu_font2 = pygame.font.Font("font/5.ttf", edu_font2_size)
 
 # menu_font = pygame.font.Font("font/3.ttf", 150)
 # status_font = pygame.font.Font("font/3.ttf", 60)
@@ -47,7 +42,7 @@ game_upgrade_level = False
 game_pause = False
 game_loss = False
 
-level_number = 1
+level_number = 3
 level = Level(screen, level_number)
 
 status_bar = StatusBar(screen, status_font)
@@ -58,16 +53,10 @@ calc_created = False
 
 #####################
 
-#####################
-text_task_active = False
-text_task_created = False
-
-#####################
-
 
 while True:
     if game_active:
-        if not game_upgrade_level and not game_pause and not game_loss and not calc_active and not text_task_active:
+        if not game_upgrade_level and not game_pause and not game_loss:  # and not calc_active and not text_task_active:
             pause_menu.active = False
             loss_menu.active = False
 
@@ -76,10 +65,7 @@ while True:
                     if event.key == pygame.K_ESCAPE:
                         game_pause = True
 
-            if random.randint(0, 10) > 1:
-                text_task_active = level.run()
-            else:
-                calc_active = level.run()
+            game_upgrade_level = level.run()
 
             counter_of_lives = level.get_counter_of_lives()
             status_bar.update(level_number, counter_of_lives)
@@ -93,32 +79,6 @@ while True:
 
             game_pause = not pause_menu.update()
 
-        elif calc_active:
-            if not calc_created:
-                calc = Calc(screen, calc_font, active_background)
-                calc_created = True
-            calc.update()
-            if calc.right:
-                calc_active = False
-                calc_created = False
-                game_upgrade_level = True
-            elif calc.active:
-                calc_active = False
-                calc_created = False
-                game_loss = True
-        elif text_task_active:
-            if not text_task_created:
-                text_task = TextTask(screen, edu_font1, edu_font2, active_background)
-                text_task_created = True
-            text_task.update()
-            if text_task.right:
-                text_task_active = False
-                text_task_created = False
-                game_upgrade_level = True
-            elif text_task.active:
-                text_task_active = False
-                text_task_created = False
-                game_loss = True
         elif game_upgrade_level:
             if transition_menu.update(level_number):
                 level = Level(screen, level_number + 1)

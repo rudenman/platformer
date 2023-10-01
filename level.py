@@ -42,10 +42,7 @@ class Level:
     def create_level(self):
         delta_x = 0
         level = [map_start]
-
-        for i in range(self.level_number):
-            random.shuffle(map_parts)
-            level.append(map_parts[random.randint(0, len(map_parts) - 1)])
+        level.extend(random.sample(map_parts, self.level_number))
         level.append(map_end)
 
         for part in level:
