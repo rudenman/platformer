@@ -1,18 +1,16 @@
-import random
-
 import pygame.draw
-from tile import Tile
-from player import Player
+
 from enemy import *
-from reward import Reward
 from lighting import Lighting
-from settings import *
+from player import Player
 from playerTrace import PlayerTrace
+from reward import Reward
+from settings import *
+from tile import Tile
 
 
 class Level:
     def __init__(self, screen, level_number):
-        # init_images()
 
         if level_number < 5:
             self.level_number = level_number

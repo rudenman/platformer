@@ -1,10 +1,28 @@
-import pygame.image
-import ctypes
+import platform
 
-user = ctypes.windll.user32
 
-window_width = user.GetSystemMetrics(0)
-window_height = user.GetSystemMetrics(1)
+def get_screen_size():
+    system = platform.system()
+
+    if system == "Windows":
+        import ctypes
+        user = ctypes.windll.user32
+        screen_width = user.GetSystemMetrics(0)
+        screen_height = user.GetSystemMetrics(1)
+
+    elif system == "Darwin":  # macOS
+        import Quartz
+        main_monitor = Quartz.CGDisplayBounds(Quartz.CGMainDisplayID())
+        screen_width = int(main_monitor.size.width)
+        screen_height = int(main_monitor.size.height)
+
+    else:
+        raise NotImplementedError(f"Unsupported operating system: {system}")
+
+    return screen_width, screen_height
+
+
+window_width, window_height = get_screen_size()
 
 tile_size = window_width / 30
 player_size = tile_size / 8 * 6
@@ -16,8 +34,8 @@ calc_font_size = window_height // 60 * 4
 edu_font1_size = window_height // 60 * 4
 edu_font2_size = window_height // 20
 
-object_speed = window_width / 235 #8
-enemy_speed = window_width / 380 #5
+object_speed = window_width / 235  # 8
+enemy_speed = window_width / 380  # 5
 
 gravity = window_height / 1350
 jump_speed = window_height / 49

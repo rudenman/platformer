@@ -1,8 +1,5 @@
 import pygame
 
-from settings import *
-from math import sin
-
 
 class PlayerTrace:
     def __init__(self, player):

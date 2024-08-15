@@ -1,7 +1,8 @@
 import random
 
-from settings import *
 import pygame
+
+from settings import *
 
 
 class Enemy:

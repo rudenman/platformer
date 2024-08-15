@@ -1,7 +1,3 @@
-import pygame
-from settings import *
-
-
 class StatusBar:
     def __init__(self, screen, font):
         self.screen = screen

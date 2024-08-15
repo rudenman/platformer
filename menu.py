@@ -1,7 +1,5 @@
-import random
 import pygame
 
-from background import Background
 from settings import *
 
 

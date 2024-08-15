@@ -1,13 +1,13 @@
+from math import sin
+
 import pygame
 
 from settings import *
-from math import sin
 
 
 class Player:
     def __init__(self, pos):
         # цвет
-        # self.color = [21, 213, 213]
         self.color = [203, 203, 203]
         self.light_k = 11
 
@@ -18,8 +18,6 @@ class Player:
         self.image_run = pygame.transform.scale(self.image_run, (player_size, player_size))
 
         self.image = self.image_stop
-        # self.image = pygame.surface.Surface((player_size, player_size))
-        # self.image.fill(self.color)
 
         self.rect = self.image.get_rect(topleft=pos)
 

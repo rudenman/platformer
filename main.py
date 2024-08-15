@@ -1,13 +1,13 @@
-import random
-
-from waitMenu import WaitMenu, LossMenu, StartMenu
-from settings import *
-from level import Level
-from statusBar import StatusBar
-from menu import Menu
-import pygame
-from background import Background
 import sys
+
+import pygame
+
+from background import Background
+from level import Level
+from menu import Menu
+from settings import *
+from statusBar import StatusBar
+from waitMenu import WaitMenu, LossMenu, StartMenu
 
 
 def close():
@@ -23,10 +23,6 @@ clock = pygame.time.Clock()
 
 menu_font = pygame.font.Font("font/5.ttf", menu_font_size)
 status_font = pygame.font.Font("font/5.ttf", status_font_size)
-
-# menu_font = pygame.font.Font("font/3.ttf", 150)
-# status_font = pygame.font.Font("font/3.ttf", 60)
-# edu_font = pygame.font.Font("font/3.ttf", 80)
 
 active_background = Background(screen)
 

@@ -1,8 +1,5 @@
-import random
 import pygame
-from sys import exit
 
-from background import Background
 from settings import *
 
 
@@ -10,8 +7,6 @@ class WaitMenu:
     def __init__(self, screen, font, text, active_background):
         self.screen = screen
 
-        # self.background = pygame.surface.Surface((window_width, window_height))
-        # self.background_rect = self.background.get_rect(topleft=(0, 0))
         self.live_background = active_background
 
         self.font = font
